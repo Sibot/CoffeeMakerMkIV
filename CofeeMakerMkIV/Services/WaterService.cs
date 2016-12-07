@@ -1,24 +1,25 @@
 ﻿using System;
 using CofeeMakerMkIV.Models;
 using CofeeMakerMkIV.Services.Interfaces;
+using System.Timers;
 
 namespace CofeeMakerMkIV.Services
 {
-    public class WaterService
+    public class WaterService : IWaterService
     {
-        private Timer Trickle;
+        public Timer Trickle { get; set; }
 
         public IRadiator Boiler { get; set; }
 
         public int AmountWater { get; set; }
 
-        public int MaxAmountWater { get; set; } = 12;
+        public int MaxAmountWater { get; } = 12;
 
-        public int MinAmountWater { get; private set; } = 1;
+        public int MinAmountWater { get; } = 1;
 
         public SensorStatus Status { get; private set; }
 
-        public Sensor Sensor = Sensor.Water;
+        public Sensor Sensor { get; private set; } = Sensor.Water;
 
         public FilterService Filter { get; }
 
@@ -95,6 +96,11 @@ namespace CofeeMakerMkIV.Services
                 this.Trickle.Stop();
             }
 
+        }
+
+        public SensorStatus Stop()
+        {
+            throw new NotImplementedException();
         }
     }
 }

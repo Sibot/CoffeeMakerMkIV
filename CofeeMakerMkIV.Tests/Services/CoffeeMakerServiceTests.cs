@@ -1,5 +1,5 @@
 ﻿using CofeeMakerMkIV.Models;
-using CofeeMakerMkIV.Services;
+using CofeeMakerMkIV.Tests.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CofeeMakerMkIV.Tests.Controllers
@@ -15,7 +15,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 12;
             var coffee = 12;
             var hasPot = true;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -32,7 +32,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 0;
             var coffee = 12;
             var hasPot = true;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -49,7 +49,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 6;
             var coffee = 12;
             var hasPot = false;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -66,7 +66,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 12;
             var coffee = 12;
             var hasPot = true;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -83,7 +83,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 12;
             var coffee = 0;
             var hasPot = true;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -100,7 +100,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 12;
             var coffee = 6;
             var hasPot = true;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -117,7 +117,7 @@ namespace CofeeMakerMkIV.Tests.Controllers
             var water = 12;
             var coffee = 12;
             var hasPot = true;
-            var coffeeMakerService = CreateCoffeeMakerService(water, coffee, filter, hasPot);
+            var coffeeMakerService = CoffeeMakerServiceHelpers.CreateCoffeeMakerService(water, coffee, filter, hasPot);
 
             // Act
             coffeeMakerService.Start();
@@ -125,20 +125,6 @@ namespace CofeeMakerMkIV.Tests.Controllers
 
             // Assert
             Assert.AreEqual(coffeeMakerService.Status, SensorStatus.Off);
-        }
-
-        private static CoffeeMakerService CreateCoffeeMakerService(int water, int coffee, bool filter, bool potInserted)
-        {
-            var boilerService = new BoilerService();
-            var coffeeService = new CoffeeService(coffee);
-            var filterService = new FilterService(filter);
-
-            var waterService = new WaterService(filterService, coffeeService, boilerService, water);
-            var heaterService = new HeaterService();
-            var potService = new PotService(filterService, potInserted);
-
-            var coffeeMakerService = new CoffeeMakerService(heaterService, waterService, potService);
-            return coffeeMakerService;
         }
     }
 }

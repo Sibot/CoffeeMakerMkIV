@@ -8,15 +8,15 @@ namespace CofeeMakerMkIV.Services
     {
         private readonly IRadiator Heater;
 
-        private readonly WaterService Water;
+        private readonly IWaterService Water;
 
         private readonly PotService Pot;
 
-        public SensorStatus Status { get; private set; } = SensorStatus.Off;
+        public SensorStatus Status { get; private set; }
 
         private Sensor Sensor => Sensor.CoffeeMaker;
 
-        public CoffeeMakerService(IRadiator heater, WaterService water, PotService pot)
+        public CoffeeMakerService(IRadiator heater, IWaterService water, PotService pot)
         {
             this.Heater = heater;
             this.Pot = pot;
@@ -44,7 +44,7 @@ namespace CofeeMakerMkIV.Services
                 return this.Status;
             }
 
-            return this.Status;
+            return SensorStatus.Off;
         }
 
         public SensorStatus Stop()

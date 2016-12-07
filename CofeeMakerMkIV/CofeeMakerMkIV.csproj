@@ -179,6 +179,8 @@
     <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\HeaterService.cs" />
     <Compile Include="Services\Interfaces\IRadiator.cs" />
+    <Compile Include="Services\Interfaces\ISensor.cs" />
+    <Compile Include="Services\Interfaces\IWaterService.cs" />
     <Compile Include="Services\PotService.cs" />
     <Compile Include="Services\WaterService.cs" />
   </ItemGroup>

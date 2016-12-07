@@ -2,13 +2,11 @@
 
 namespace CofeeMakerMkIV.Services.Interfaces
 {
-    public interface IRadiator
+    public interface IRadiator : ISensor
     {
         int MaxTemperature { get;}
 
         int OptimalTemperature { get; }
-
-        Sensor Sensor { get; }
 
         SensorStatus Start();
 
